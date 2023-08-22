@@ -18,11 +18,22 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-private:
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Sin Param")
 	float Amplitude = 2.5f;
-	UPROPERTY(EditAnywhere)
+
+	UFUNCTION(BlueprintPure)
+	float TransformedSin() const;
+
+	UFUNCTION(BlueprintPure)
+	float TransformedCos() const;
+
+private:
+	UPROPERTY(VisibleAnywhere, Category="Sin Param")
 	float RunningTime;
-	UPROPERTY(EditInstanceOnly)
+
+	UPROPERTY(EditInstanceOnly, Category="Sin Param")
 	float TimeConstant = 5.f;
+
+	UPROPERTY(EditAnywhere, meta =(AllowPrivateAccess="true"))
+	float EditAnywhere;
 };

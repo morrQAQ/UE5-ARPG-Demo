@@ -11,8 +11,6 @@ void AItem::BeginPlay()
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("Begin play !"));
 
-	// SetActorLocation(FVector(0.f, 0.f, 50.f));
-
 	if (GEngine)
 	{
 		GEngine->AddOnScreenDebugMessage(1, 60.f, FColor::Green,
@@ -20,16 +18,21 @@ void AItem::BeginPlay()
 	}
 }
 
+float AItem::TransformedSin() const
+{
+	return Amplitude * FMath::Sin(RunningTime * TimeConstant);
+}
+
+float AItem::TransformedCos() const
+{
+	return Amplitude * FMath::Cos(RunningTime * TimeConstant);
+}
+
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	constexpr float Speed = 50.f;
-
 	RunningTime += DeltaTime;
-	const float OffsetZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
-	AddActorWorldOffset(
-		FVector(Speed * DeltaTime, 0.f, OffsetZ));
 
 	const FVector Location = GetActorLocation();
 	const FVector Forward = GetActorForwardVector();
