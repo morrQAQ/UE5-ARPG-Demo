@@ -37,8 +37,8 @@ private:
 	UPROPERTY(EditInstanceOnly, Category="Sin Param")
 	float TimeConstant = 5.f;
 
-	UPROPERTY(EditAnywhere, meta =(AllowPrivateAccess="true"))
-	float EditAnywhere;
+	UPROPERTY()
+	UStaticMeshComponent* ItemMesh;
 };
 
 template <typename T>

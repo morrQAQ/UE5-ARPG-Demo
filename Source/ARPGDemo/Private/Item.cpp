@@ -4,20 +4,14 @@
 AItem::AItem(): AActor()
 {
 	PrimaryActorTick.bCanEverTick = true;
+
+	ItemMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMesh"));
+	RootComponent = ItemMesh;
 }
 
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-	UE_LOG(LogTemp, Warning, TEXT("Begin play !"));
-
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(1, 60.f, FColor::Green,
-		                                 FString("print on screen message !"));
-	}
-
-	UE_LOG(LogTemp, Warning, TEXT("Avg :%d"), Avg<int32>(1, 3));
 }
 
 float AItem::TransformedSin() const
@@ -35,9 +29,4 @@ void AItem::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	RunningTime += DeltaTime;
-
-	const FVector Location = GetActorLocation();
-	const FVector Forward = GetActorForwardVector();
-	DRAW_SPHERE_EVERY_FRAME(Location);
-	DRAW_LINE_EVERY_FRAME(Location, Location-Forward);
 }
