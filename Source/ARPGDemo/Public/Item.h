@@ -19,7 +19,10 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
+	UPROPERTY(EditDefaultsOnly)
 	float Amplitude = 2.5f;
+	UPROPERTY(EditAnywhere)
 	float RunningTime;
+	UPROPERTY(EditInstanceOnly)
 	float TimeConstant = 5.f;
 };
