@@ -16,6 +16,8 @@ void AItem::BeginPlay()
 		GEngine->AddOnScreenDebugMessage(1, 60.f, FColor::Green,
 		                                 FString("print on screen message !"));
 	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Avg :%d"), Avg<int32>(1, 3));
 }
 
 float AItem::TransformedSin() const

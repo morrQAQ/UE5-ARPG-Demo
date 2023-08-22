@@ -27,6 +27,9 @@ protected:
 	UFUNCTION(BlueprintPure)
 	float TransformedCos() const;
 
+	template <typename T>
+	static T Avg(T First, T Second);
+
 private:
 	UPROPERTY(VisibleAnywhere, Category="Sin Param")
 	float RunningTime;
@@ -37,3 +40,9 @@ private:
 	UPROPERTY(EditAnywhere, meta =(AllowPrivateAccess="true"))
 	float EditAnywhere;
 };
+
+template <typename T>
+T AItem::Avg(T First, T Second)
+{
+	return (First + Second) / 2;
+}
