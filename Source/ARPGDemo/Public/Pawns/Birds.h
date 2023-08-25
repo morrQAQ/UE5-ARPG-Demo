@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -7,6 +6,8 @@
 #include "Birds.generated.h"
 
 class UCapsuleComponent;
+class USkeletalMeshComponent;
+
 
 UCLASS()
 class ARPGDEMO_API ABirds : public APawn
@@ -22,7 +23,14 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UCapsuleComponent* Capsule;
-	UCapsuleComponent* Capsule1;
+	UPROPERTY(VisibleAnywhere)
+	USkeletalMeshComponent* Bird;
 	
+	UPROPERTY(VisibleAnywhere)
+	UCapsuleComponent* Root;
+
+	void MoveForward(float Value);
+	void Turn(float Value);
+	void LookUp(float Value);
+
 };
