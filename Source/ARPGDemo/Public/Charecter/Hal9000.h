@@ -8,6 +8,7 @@
 
 class UCameraComponent;
 class USpringArmComponent;
+class UGroomComponent;
 
 UCLASS()
 class ARPGDEMO_API AHal9000 : public ACharacter
@@ -27,8 +28,12 @@ private:
 	UCameraComponent* Camera;
 	UPROPERTY(EditAnywhere)
 	USpringArmComponent* SpringArm;
+	UPROPERTY(EditAnywhere,Category=hair)
+	UGroomComponent* Hair;
 	
 	void MoveForward(float Value);
 	void Turn(float Value);
 	void LookUp(float Value);
+
+	
 };
