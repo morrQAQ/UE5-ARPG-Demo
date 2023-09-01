@@ -65,7 +65,7 @@ void AHal9000::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent ->
+	PlayerInputComponent  ->
 	BindAxis(FName("MoveForward"),this,&AHal9000::MoveForward);
 
 	PlayerInputComponent->
