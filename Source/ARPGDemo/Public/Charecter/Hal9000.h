@@ -28,12 +28,10 @@ private:
 	UCameraComponent* Camera;
 	UPROPERTY(EditAnywhere)
 	USpringArmComponent* SpringArm;
-	UPROPERTY(EditAnywhere,Category=hair)
+	UPROPERTY(EditAnywhere, Category=hair)
 	UGroomComponent* Hair;
-	
+
 	void MoveForward(float Value);
 	void Turn(float Value);
 	void LookUp(float Value);
-
-	
 };

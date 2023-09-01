@@ -8,17 +8,17 @@
 AHal9000::AHal9000()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	bUseControllerRotationPitch =false;
-	bUseControllerRotationRoll=false;
-	bUseControllerRotationYaw=false;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationRoll = false;
+	bUseControllerRotationYaw = false;
 
-	GetCharacterMovement()->bOrientRotationToMovement=true;
-	
-	SpringArm=CreateDefaultSubobject<USpringArmComponent>("SpringArm");
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+
+	SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
 	SpringArm->SetupAttachment(GetRootComponent());
-	SpringArm->TargetArmLength=300.f;
-	SpringArm->bUsePawnControlRotation=true;
-	
+	SpringArm->TargetArmLength = 300.f;
+	SpringArm->bUsePawnControlRotation = true;
+
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Main Camera"));
 	Camera->SetupAttachment(SpringArm);
 
@@ -33,17 +33,20 @@ void AHal9000::BeginPlay()
 	Super::BeginPlay();
 }
 
-void AHal9000::MoveForward(float Value) 
+void AHal9000::MoveForward(float Value)
 {
-	if(!Controller || Value==0) return;;
-	
+	if (!Controller || Value == 0)
+	{
+		return;
+	}
+
 	//youtube video version.
-	const FRotator ControlRotation (0.f,GetControlRotation().Yaw,0.f);
+	const FRotator ControlRotation(0.f, GetControlRotation().Yaw, 0.f);
 	const FVector Direction = FRotationMatrix(ControlRotation).GetUnitAxis(EAxis::X);
-	
+
 	// my direction version.
 	// const FVector Forward =SpringArm->GetForwardVector();
-	AddMovementInput(Direction,Value);
+	AddMovementInput(Direction, Value);
 }
 
 void AHal9000::Turn(float Value)
@@ -65,15 +68,15 @@ void AHal9000::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent  ->
-	BindAxis(FName("MoveForward"),this,&AHal9000::MoveForward);
+	PlayerInputComponent->
+		BindAxis(FName("MoveForward"), this, &AHal9000::MoveForward);
 
 	PlayerInputComponent->
-	BindAxis(FName("Turn"),this,&AHal9000::Turn);
+		BindAxis(FName("Turn"), this, &AHal9000::Turn);
 
 	PlayerInputComponent->
-	BindAxis(FName("LookUp"),this,&AHal9000::LookUp);
+		BindAxis(FName("LookUp"), this, &AHal9000::LookUp);
+
+	PlayerInputComponent->
+		BindAction(FName("Jump"), IE_Pressed, this, &ACharacter::Jump);
 }
-
-
-
