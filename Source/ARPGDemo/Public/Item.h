@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "Item.generated.h"
 
+class USphereComponent;
+
 UCLASS()
 class ARPGDEMO_API AItem : public AActor
 {
@@ -39,10 +41,19 @@ private:
 
 	UPROPERTY()
 	UStaticMeshComponent* ItemMesh;
+
+	UPROPERTY(VisibleAnywhere)
+	USphereComponent* Sphere;
+
+	UFUNCTION()
+	void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	                     UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool
+	                     bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+	                  int32 OtherBodyIndex);
 };
 
 template <typename T>
-T AItem::Avg(T First, T Second)
-{
-	return (First + Second) / 2;
-}
+T AItem::Avg(T First, T Second) { return (First + Second) / 2; }
