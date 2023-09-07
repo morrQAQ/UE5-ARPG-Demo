@@ -50,6 +50,5 @@ void AItem::OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Other
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 	RunningTime += DeltaTime;
 }

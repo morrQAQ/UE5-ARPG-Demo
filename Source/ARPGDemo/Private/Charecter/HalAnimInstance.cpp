@@ -7,11 +7,11 @@ void UHalAnimInstance::NativeInitializeAnimation()
 {
 	Super::NativeInitializeAnimation();
 
-	hal9000 = Cast<AHal9000>(TryGetPawnOwner());
+	Hal9000 = Cast<AHal9000>(TryGetPawnOwner());
 
-	if (!hal9000) { return; }
+	if (!Hal9000) { return; }
 
-	Movement = hal9000->GetCharacterMovement();
+	Movement = Hal9000->GetCharacterMovement();
 }
 
 void UHalAnimInstance::NativeUpdateAnimation(float DeltaSeconds)

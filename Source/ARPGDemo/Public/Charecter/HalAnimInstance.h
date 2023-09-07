@@ -13,7 +13,7 @@ class ARPGDEMO_API UHalAnimInstance : public UAnimInstance
 
 protected:
 	UPROPERTY(BlueprintReadOnly)
-	AHal9000* hal9000;
+	AHal9000* Hal9000;
 
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
 	UCharacterMovementComponent* Movement;
